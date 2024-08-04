@@ -32,6 +32,45 @@ For example:
 
 An aditional file containing the information of the first three fields in CSV format will be produced. **Notice** that each line can contain other elements after the third one using the `-` as delimiter. Those extra columns will be ignored.If the video's description does not follow the format, the chapter information can be also created manually in a CSV format with a header line `start,end,song` with any text editor, and naming it with the same base name of the MP4 file and `.csv`extension will be directly used by the `split_video.ps1` script as explained in the next chapter.
 
+Sample execution:
+
+```
+PS C:\Users\jaferrando\jam> python .\yt.py
+Video URL: https://www.youtube.com/watch?v=qyltRTowCBY
+Audio Only [yes/no] (no):
+Title: Jam Oviedo 2.0 31-7-2024 Javi Queen Highest Resolution:720p Progressive=False
+1:44    - 4:40    - Caperucita Feroz                 - Orquesta Mondragón00.0%
+6:22    - 9:50    - I Want To Break Free             - Queen
+11:34   - 16:06   - I Just Want To Make Love To You  - Etta James
+18:36   - 21:00   - A Little Less Conversation       - Elvis Presley
+24:09   - 27:36   - Bien Por Ti                      - Viva Suecia
+29:30   - 33:05   - Who Can It Be Now                - Men At Work
+35:45   - 41:00   - Just a Gigolo                    - David Lee Roth
+45:36   - 50:10   - Zombie                           - The Cranberries
+52:49   - 59:10   - Edge Of Seventeen                - Stevie Nicks
+1:01:03 - 1:06:10 - Reinas De La Noche               - Burning
+1:08:00 - 1:12:45 - Losing My Religion               - REM
+1:15:18 - 1:20:50 - So Lonely                        - The Police
+1:23:15 - 1:27:35 - Everlong                         - Foofigters
+1:30:15 - 1:35:30 - I Drink Alone                    - George T&TD
+1:37:48 - 1:42:30 - Dont Stop Believin               - Journey
+1:45:19 - 1:49:30 - Greased Lightning                - BSO Grease
+1:50:38 - 1:57:30 - Confortably Numb                 - Pink Floyd
+1:59:15 - 2:03:15 - Can I Play With Madness          - Iron Maiden
+2:05:00 - 2:09:15 - Pain                             - Marcus King
+2:11:00 - 2:14:55 - Misery Business                  - Paramore
+2:17:54 - 2:23:00 - Hammer To Fall                   - Queen
+2:27:20 - 2:36:40 - Hot Stuff                        - Donna Summers
+2:38:49 - 2:43:30 - Whats Next To The Moon           - AC/DC
+2:45:45 - 2:50:50 - Ghost Riders In The Sky          - Blues Brothers
+2:52:19 - 2:59:20 - Smoke On The Water               - Deep Purple
+2:59:46 - 3:01:30 - Cumpleaños Feliz Claudia                     - .
+3:01:36 - 3:05:25 - Breaking The Law                 - Judas Priest
+Stream is not progressive, downloading the audio separatedly...
+Merging video and audio file into output:jam-oviedo-20-31-7-2024-javi-queen_mix.mp4
+This may take some time. Do not interrupt the process...
+```
+
 ## merge.ps1
 
 To merge video and audio run the `merge.ps1` script from a Windows PowerShell command line witht the `-file` parameter indicating the `.mp4` file name. This only needs to be done for non-progressive videos, if the `yt.py` script produced separate `.mp4` and `.mp3` files it will try to run this script automatically.
