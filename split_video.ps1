@@ -20,7 +20,7 @@ $chapters = Import-Csv -Path $chapters_name | Select-Object -Skip 1 | Foreach-Ob
   $start = $_.start
   $end = $_.end
   $song = ("{0}.mp4" -f $_.song)
-  Write-Host "ffmpeg -y -i $file -avoid_negative_ts make_zero -fflags +genpts -ss $start -to $end -c:a aac $song"
+  ffmpeg -v quiet -stats -y -i $file -avoid_negative_ts make_zero -fflags +genpts -ss $start -to $end -c:a aac $song
 }
 
 
