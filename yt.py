@@ -5,38 +5,35 @@ import re
 import csv
 
 url = input("Video URL: ")
-#url = "https://youtu.be/qyltRTowCBY"
- 
+mp3_only = input("Audio Only [yes/no] (no): ").lower()
+progressive = True
+
 yt = YouTube(url, on_progress_callback = on_progress)
 
-ys = yt.streams.get_highest_resolution(progressive=False)
+if mp3_only != "yes":
+  ys = yt.streams
+  ys = [ x for x in ys if x.type == "video" ]
+  ys.sort(key=lambda x: x.resolution, reverse=True)
+  ys = ys[0]
 
-filename = ys.default_filename
-print(ys.title)
-filename= unicodedata.normalize('NFKD', filename).encode('utf8', 'ignore').decode('utf8')
-filename= re.sub(r'[^\w\s\.-]', '', filename.lower())
-filename= re.sub(r'[-\s]+', '-', filename).strip('-_')
+  progressive = ys.is_progressive == "True"
 
-description = yt.description
-with open(filename.replace('.mp4','.csv'), 'w', newline='') as file:
-  writer = csv.writer(file)
-  field = ["start","end","song"]
-  writer.writerow(field)
-  for l in description.split('\n'):
-    cols = l.split('-')
-    start = cols[0].strip()
-    end = cols[1].strip()
-    song = cols[2].strip().replace(' ','_')
-    band = cols[3].strip()
-    writer.writerow([start,end,song])
+  filename = ys.default_filename
+  print(f"Title: {ys.title} Highest Resolution:{ys.resolution} Progressive={ys.is_progressive}")
 
-#ys.download(filename = filename)
+  filename= unicodedata.normalize('NFKD', filename).encode('utf8', 'ignore').decode('utf8')
+  filename= re.sub(r'[^\w\s\.-]', '', filename.lower())
+  filename= re.sub(r'[-\s]+', '-', filename).strip('-_')
 
-ya = yt.streams.get_audio_only()
-filename = ya.default_filename
-filename = unicodedata.normalize('NFKD', filename).encode('ascii', 'ignore').decode('ascii')
-filename= re.sub(r'[^\w\s\.-]', '', filename.lower())
-filename= re.sub(r'[-\s]+', '-', filename).strip('-_')
-filename = filename.replace('.mp4', '')
+  ys.download(filename = filename)
 
-#ya.download(filename = filename,mp3=True)
+if not progressive or mp3_only:
+  print("Stream is not progressive, downloading the audio separatedly...")
+  ya = yt.streams.get_audio_only()
+  filename = ya.default_filename
+  filename = unicodedata.normalize('NFKD', filename).encode('ascii', 'ignore').decode('ascii')
+  filename= re.sub(r'[^\w\s\.-]', '', filename.lower())
+  filename= re.sub(r'[-\s]+', '-', filename).strip('-_')
+  filename = filename.replace('.mp4', '')
+
+  ya.download(filename = filename,mp3=True)
