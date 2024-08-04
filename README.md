@@ -1,8 +1,9 @@
 # YT video dowload scripts
 ## install
 
-1. Install Python 3.9 or higher
-2. Install requirements:
+1. Install [Python 3.9 or higher](https://www.python.org/downloads/)
+2. Install the [ffmpeg tool](https://www.ffmpeg.org/download.html) for your platform
+3. Install requirements:
 ```
 pip install -r requirements.txt
 ``` 
@@ -27,13 +28,13 @@ For example:
 ```
 1:00 - 1:30 - Billie Jean - Michael Jackson
 ```
-Start and end must be time expressed in `HH:MM:SS.000` format, the hours and miliseconds being optional. In the example above, the time period expressed is that between one minute and one minute and thirty seconds. 
+    *Start and end must be time expressed in `HH:MM:SS.000` format, the hours and miliseconds being optional. In the example above, the time period expressed is that between one minute and one minute and thirty seconds.*
 
 An aditional file containing the information of the first three fields in CSV format will be produced. **Notice** that each line can contain other elements after the third one using the `-` as delimiter. Those extra columns will be ignored.If the video's description does not follow the format, the chapter information can be also created manually in a CSV format with a header line `start,end,song` with any text editor, and naming it with the same base name of the MP4 file and `.csv`extension will be directly used by the `split_video.ps1` script as explained in the next chapter.
 
 ## merge.ps1
 
-To merge video and autio run the `merge.ps1` script from a Windows PowerShell command line witht the `-file` parameter indicating the `.mp4` file name.
+To merge video and audio run the `merge.ps1` script from a Windows PowerShell command line witht the `-file` parameter indicating the `.mp4` file name. This only needs to be done for non-progressive videos, if the `yt.py` script produced separate `.mp4` and `.mp3` files.
 
 ```
 ./merge.ps1 -file yt-video-test.mp4
