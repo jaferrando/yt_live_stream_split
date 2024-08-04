@@ -32,6 +32,8 @@ For example:
 
 An aditional file containing the information of the first three fields in CSV format will be produced. **Notice** that each line can contain other elements after the third one using the `-` as delimiter. Those extra columns will be ignored.If the video's description does not follow the format, the chapter information can be also created manually in a CSV format with a header line `start,end,song` with any text editor, and naming it with the same base name of the MP4 file and `.csv`extension will be directly used by the `split_video.ps1` script as explained in the next chapter.
 
+The output will include the description of the file as found in YT, and progress indication of each download and of the video-audio merging process if required.
+
 Sample execution:
 
 ```
@@ -69,6 +71,8 @@ Title: Jam Oviedo 2.0 31-7-2024 Javi Queen Highest Resolution:720p Progressive=F
 Stream is not progressive, downloading the audio separatedly...
 Merging video and audio file into output:jam-oviedo-20-31-7-2024-javi-queen_mix.mp4
 This may take some time. Do not interrupt the process...
+File 'jam-oviedo-20-31-7-2024-javi-queen_mix.mp4' already exists. Overwrite? [y/N] y
+size= 3111005KiB time=03:05:53.63 bitrate=2284.9kbits/s speed=28.2x
 ```
 
 ## merge.ps1
