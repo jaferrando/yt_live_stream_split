@@ -68,9 +68,10 @@ def main():
     audio_filename = audio_filename.replace('.mp4', '')
 
     ya.download(filename = audio_filename,mp3=True)
-    print("Merging video and audio file into output:"+filename.replace(".mp4","_mix.mp4"))
-    print("This may take some time. Do not interrupt the process...")
-    run_ps(cmd = f'./merge.ps1 -file {filename}')
+    if not progressive:
+      print("Merging video and audio file into output:"+filename.replace(".mp4","_mix.mp4"))
+      print("This may take some time. Do not interrupt the process...")
+      run_ps(cmd = f'./merge.ps1 -file {filename}')
 
 if __name__ == '__main__':
   main()
