@@ -15,9 +15,9 @@ Will request the video URL. You can use the URL in the browser input field, or a
 
 It will also ask if you want only the audio, in which case only an mp3 will be provided, at the highest available bit rate.
 
-The video stream of highest resolution will be downloaded. Sometimes that video is not in progressive video format and the resulting MP4 will not contain an audio stream. In that case the scritp will also download the audio in an MP3, resulting in two files being downloaded, one with the video and one with the audio. In those cases use the  `merge.ps1` script to produce a complete file with video and audio.
+The video stream of highest resolution will be downloaded. Sometimes that video is not in progressive video format and the resulting MP4 will not contain an audio stream. In that case the script will also download the audio in an MP3, resulting in two files being downloaded, one with the video and one with the audio. Then the script will try to run the `merge.ps1` Microsoft Powershell script to merge both into a single video file that will have the `_mix` suffix.
 
-If the video description conforms to the following format:
+If the video description in YT conforms to the following format:
 
 ```
 <start> - <end> - <title>
@@ -34,11 +34,14 @@ An aditional file containing the information of the first three fields in CSV fo
 
 ## merge.ps1
 
-To merge video and audio run the `merge.ps1` script from a Windows PowerShell command line witht the `-file` parameter indicating the `.mp4` file name. This only needs to be done for non-progressive videos, if the `yt.py` script produced separate `.mp4` and `.mp3` files.
+To merge video and audio run the `merge.ps1` script from a Windows PowerShell command line witht the `-file` parameter indicating the `.mp4` file name. This only needs to be done for non-progressive videos, if the `yt.py` script produced separate `.mp4` and `.mp3` files it will try to run this script automatically.
 
 ```
 ./merge.ps1 -file yt-video-test.mp4
 ```
+
+The script will produce a new file with the  `_mix` suffix in the name (f.e. `yt-video-test_mix.mp4`)
+
 ## split_video.ps1
 
 This is a PowerShell script that has to be run from a Windows PowerShell command line. It will take a MP4 file and CSV file by the same base name, and split the video in separate files, one for each chapter declared in the CSV file. Each file will be named by the value of the third field, replacing spaces by dashes. In the example used in a previous chapter, an MP4 file named `Billie_Jean.mp4` would be produced, discarding all the other footage of the video except that between 1:00 and 1:30 time.
