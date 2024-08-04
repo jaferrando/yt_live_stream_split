@@ -45,3 +45,10 @@ The script will produce a new file with the  `_mix` suffix in the name (f.e. `yt
 ## split_video.ps1
 
 This is a PowerShell script that has to be run from a Windows PowerShell command line. It will take a MP4 file and CSV file by the same base name, and split the video in separate files, one for each chapter declared in the CSV file. Each file will be named by the value of the third field, replacing spaces by dashes. In the example used in a previous chapter, an MP4 file named `Billie_Jean.mp4` would be produced, discarding all the other footage of the video except that between 1:00 and 1:30 time.
+
+You can provide a file with the `_mix` suffix if that is what the `yt.py` script produced as result of merging video and audio, and it will use the CSV of the file without the `_mix` as produced by the `yt.py` script.
+
+```
+./split_video.ps1 -file jam-oviedo-20-31-7-2024-javi-queen_mix.mp4
+```
+
