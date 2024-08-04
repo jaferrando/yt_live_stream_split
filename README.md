@@ -39,7 +39,7 @@ PS C:\Users\jaferrando\jam> python .\yt.py
 Video URL: https://www.youtube.com/watch?v=qyltRTowCBY
 Audio Only [yes/no] (no):
 Title: Jam Oviedo 2.0 31-7-2024 Javi Queen Highest Resolution:720p Progressive=False
-1:44    - 4:40    - Caperucita Feroz                 - Orquesta Mondragón00.0%
+1:44    - 4:40    - Caperucita Feroz                 - Orquesta Mondragón
 6:22    - 9:50    - I Want To Break Free             - Queen
 11:34   - 16:06   - I Just Want To Make Love To You  - Etta James
 18:36   - 21:00   - A Little Less Conversation       - Elvis Presley
