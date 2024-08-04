@@ -6,6 +6,7 @@ import csv
 import subprocess
 
 def parse_description(description):
+  print(description)
   data = []
   try:
     for l in description.split('\n'):
@@ -13,11 +14,12 @@ def parse_description(description):
       start_val = cols[0].strip()
       end_val = cols[1].strip()
       song_val = cols[2].strip().replace(' ','_')
-      item = {start:start_val,end:end_val,song:song_val}
-      print(item)
+      item = [start_val,end_val,song_val]
       data.append(item)
     return data
   except Exception as err:
+    print("Video description does not comply with format. No chapters data is being produced for split.")
+    print(str(err))
     return None
 
 def run_ps(cmd):
@@ -56,7 +58,7 @@ def main():
         field = ["start","end","song"]
         writer.writerow(field)
         for l in data:
-          writer.writerow([l.start,l.end,l.song])
+          writer.writerow(l)
 
   if not progressive or mp3_only:
     print("Stream is not progressive, downloading the audio separatedly...")
