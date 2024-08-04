@@ -48,7 +48,7 @@ def main():
     filename= re.sub(r'[^\w\s\.-]', '', filename.lower())
     filename= re.sub(r'[-\s]+', '-', filename).strip('-_')
 
-    #ys.download(filename = filename)
+    ys.download(filename = filename)
 
     description = yt.description
     data = parse_description(description)
