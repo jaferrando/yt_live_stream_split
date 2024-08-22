@@ -1,4 +1,4 @@
-# YT video dowload scripts
+# YT video dowload and split scripts
 ## install
 
 1. Install [Python 3.9 or higher](https://www.python.org/downloads/)
