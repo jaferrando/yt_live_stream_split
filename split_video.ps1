@@ -16,7 +16,7 @@ if ($name -like "*_mix") {
   $chapters_name = "{0}.csv" -f $name
 }
 
-$chapters = Import-Csv -Path $chapters_name | Select-Object -Skip 1 | Foreach-Object {
+$chapters = Import-Csv -Path $chapters_name | Foreach-Object {
   $start = $_.start
   $end = $_.end
   $song = ("{0}.mp4" -f $_.song)
