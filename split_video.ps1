@@ -8,7 +8,7 @@ if ($name -like "*_mix") {
   $orig_name = $name -replace "_mix"
   Write-Host $orig_name
   $mp3_name = "{0}.mp3" -f $orig_name
-  Write_Host $mp3_name
+  Write-Host $mp3_name
   $chapters_name = "{0}.csv" -f $orig_name
   Write-Host $chapters_name
 } else {
@@ -20,7 +20,9 @@ $chapters = Import-Csv -Path $chapters_name | Select-Object -Skip 1 | Foreach-Ob
   $start = $_.start
   $end = $_.end
   $song = ("{0}.mp4" -f $_.song)
-  ffmpeg -v quiet -stats -y -i $file -avoid_negative_ts make_zero -fflags +genpts -ss $start -to $end -c:a aac $song
+  if (!(Test-Path $song -PathType Leaf)) {
+    ffmpeg -v quiet -stats -y -i $file -avoid_negative_ts make_zero -fflags +genpts -ss $start -to $end -c:a aac $song
+  }
 }
 
 
