@@ -29,7 +29,7 @@ For example:
 1:00 - 1:30 - Billie Jean - Michael Jackson
 ```
 
-    *Start and end must be time expressed in `HH:MM:SS.000` format, the hours and miliseconds being optional. In the example above, the time period expressed is that between one minute and one minute and thirty seconds.* The time format is quite permissive and will understand `1:30` as minute 1 and 30 seconds, and also `1:3:1` as hour one, minute three and one second.
+*Start and end must be time expressed in `HH:MM:SS.000` format, the hours and miliseconds being optional. In the example above, the time period expressed is that between one minute and one minute and thirty seconds. The time format is quite permissive and will understand `1:30` as minute 1 and 30 seconds, and also `1:3:1` as hour one, minute three and one second.*
 
 An aditional file containing the information of the first three fields in CSV format will be produced. **Notice** that each line can contain other elements after the third one using the `-` as delimiter. Those extra columns will be ignored.If the video's description does not follow the format, the chapter information can be also created manually in a CSV format with a header line `start,end,song` with any text editor, and naming it with the same base name of the MP4 file and `.csv`extension will be directly used by the `split_video.ps1` script as explained in the next chapter.
 
