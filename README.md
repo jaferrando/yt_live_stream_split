@@ -17,7 +17,7 @@ It will also ask if you want only the audio, in which case only an mp3 will be p
 
 The video stream of highest resolution will be downloaded. Sometimes that video is not in progressive video format and the resulting MP4 will not contain an audio stream. In that case the script will also download the audio in an MP3, resulting in two files being downloaded, one with the video and one with the audio. Then the script will try to run the `merge.ps1` Microsoft Powershell script to merge both into a single video file that will have the `_mix` suffix.
 
-If the video description in YT conforms to the following format:
+If the video description in YT contains lines that conform to the following format, they will be takes as the video index. Other lines that do not have this format are ignored, so thre can be anything written before, after or in between the index lines:
 
 ```
 <start> - <end> - <title>
