@@ -10,12 +10,13 @@ def parse_description(description):
   data = []
   try:
     for l in description.split('\n'):
-      cols = l.split('-')
-      start_val = cols[0].strip()
-      end_val = cols[1].strip()
-      song_val = cols[2].strip().replace(' ','_')
-      item = [start_val,end_val,song_val]
-      data.append(item)
+      if re.match('\s*[0-9]{1,2}:[0-9]{1,2}:[0-9]{1,2}.*$', l):
+        cols = l.split('-')
+        start_val = cols[0].strip()
+        end_val = cols[1].strip()
+        song_val = cols[2].strip().replace(' ','_')
+        item = [start_val,end_val,song_val]
+        data.append(item)
     return data
   except Exception as err:
     print("Video description does not comply with format. No chapters data is being produced for split.")
@@ -23,7 +24,7 @@ def parse_description(description):
     return None
 
 def run_ps(cmd):
-    completed = subprocess.run(["powershell", "-Command", cmd], capture_output=True)
+    completed = subprocess.run(["powershell", "-Command", cmd], stdout=subprocess.PIPE)
     return completed
 
 def main():
