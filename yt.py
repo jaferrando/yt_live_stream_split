@@ -37,7 +37,7 @@ def main():
   if mp3_only != "yes":
     ys = yt.streams
     ys = [ x for x in ys if x.type == "video" ]
-    ys.sort(key=lambda x: x.resolution, reverse=True)
+    ys.sort(key=lambda x: int(x.resolution[:-1]), reverse=True)
     ys = ys[0]
 
     progressive = ys.is_progressive == "True"
