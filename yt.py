@@ -1,4 +1,5 @@
 from pytubefix import YouTube
+from pytubefix import exceptions
 from pytubefix.cli import on_progress
 import unicodedata
 import re
@@ -35,13 +36,20 @@ def main():
   yt = YouTube(url, on_progress_callback = on_progress)
 
   if mp3_only != "yes":
-    ys = yt.streams
+    try:
+      ys = yt.streams
+    except exceptions.UnknownVideoError as ex:
+      if ex.reason == 'This live event has ended.':
+        print('Video is not available yet. Live stream videos take hours to be available')
+        exit()
+      else:
+        raise ex
     ys = [ x for x in ys if x.type == "video" ]
     ys.sort(key=lambda x: int(x.resolution[:-1]), reverse=True)
     ys = ys[0]
 
     progressive = ys.is_progressive == "True"
-
+  
     filename = ys.default_filename
     print(f"Title: {ys.title} Highest Resolution:{ys.resolution} Progressive={ys.is_progressive}")
 
@@ -71,10 +79,11 @@ def main():
     audio_filename = audio_filename.replace('.mp4', '')
 
     ya.download(filename = audio_filename,mp3=True)
-    if not progressive:
-      print("Merging video and audio file into output:"+filename.replace(".mp4","_mix.mp4"))
-      print("This may take some time. Do not interrupt the process...")
-      run_ps(cmd = f'./merge.ps1 -file {filename}')
+
+  if not progressive:
+    print("Merging video and audio file into output:"+filename.replace(".mp4","_mix.mp4"))
+    print("This may take some time. Do not interrupt the process...")
+    run_ps(cmd = f'./merge.ps1 -file {filename}')
 
 if __name__ == '__main__':
   main()
