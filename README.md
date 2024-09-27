@@ -5,7 +5,7 @@
 2. (ONLY to download videos, if only MP3 is wanted skip this) Install the [ffmpeg tool](https://www.ffmpeg.org/download.html) for your platform
 3. Install requirements:
 ```
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 ``` 
 3. Copy the scripts to the folder you want to download files to
    
