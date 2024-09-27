@@ -15,7 +15,7 @@ pytubefix          7.1rc1   C:\Users\YourUser\AppData\Local\Programs\Python\Pyth
 ```
 
 Go to the route and to the `pytubefix` directory in it. Then open the `__main__.py` file with a text editor:
-Find the text `LIVE_STREAM` on line 372, then remove or comment line 373 and add in it place the command `pass` resulting in this section of code:
+Find the text `LIVE_STREAM` on line 372, then remove or comment line 373 and add in its place the command `pass` resulting in this section of code:
 
 ```
             elif status == 'LIVE_STREAM':
