@@ -1,3 +1,30 @@
+# PITUBEFIX TEMPORARY BUG WORK AROUND
+
+The library we use to download from YT (pytubefix) is experiencing a bug that makes downloads fail with an error saying the video is unavailable. This happens for example for videos that where produced from a Live Stream. In this particular case of Live Stream videos and until pytubefix fixes the bug, use the following workaround:
+
+Run this command to locate where pytubefix is installed:
+
+```
+pip list -v
+```
+Find pytubefix in the list:
+```
+Package            Version  Location                                                                        Installer
+------------------ -------- ------------------------------------------------------------------------------- ---------
+pytubefix          7.1rc1   C:\Users\YourUser\AppData\Local\Programs\Python\Python311\Lib\site-packages pip
+```
+
+Go to the route and to the `pytubefix` directory in it. Then open the `__main__.py` file with a text editor:
+Find the text `LIVE_STREAM` on line 372, then remove or comment line 373 and add in it place the command `pass` resulting in this section of code:
+
+```
+            elif status == 'LIVE_STREAM':
+                pass
+                # raise exceptions.LiveStreamError(video_id=self.video_id)
+```
+
+This solves the issue at least for Live Stream videos
+
 # YT video dowload and split scripts
 ## install
 
