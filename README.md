@@ -105,7 +105,7 @@ size= 3111005KiB time=03:05:53.63 bitrate=2284.9kbits/s speed=28.2x
 
 ## merge.ps1
 
-To merge video and audio run the `merge.ps1` script from a Windows PowerShell command line witht the `-file` parameter indicating the `.mp4` file name. This only needs to be done for non-progressive videos, if the `yt.py` script produced separate `.mp4` and `.mp3` files it will try to run this script automatically.
+To merge video and audio run the `merge.ps1` script from a Windows PowerShell command line witht the `-file` parameter indicating the `.mp4` file name. This only needs to be done for non-progressive videos, if the `yt.py` script produced separate `.mp4` and `.mp3` files it will try to run this script automatically; so you won't usually need to run this script manually.
 
 ```
 ./merge.ps1 -file yt-video-test.mp4
