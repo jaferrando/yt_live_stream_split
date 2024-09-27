@@ -29,7 +29,7 @@ This solves the issue at least for Live Stream videos
 ## install
 
 1. Install [Python 3.9 or higher](https://www.python.org/downloads/)
-2. Install the [ffmpeg tool](https://www.ffmpeg.org/download.html) for your platform
+2. (ONLY to download videos, if only MP3 is wanted skip this) Install the [ffmpeg tool](https://www.ffmpeg.org/download.html) for your platform
 3. Install requirements:
 ```
 pip install -r requirements.txt
