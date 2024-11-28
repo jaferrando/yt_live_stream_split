@@ -78,7 +78,7 @@ def main():
     audio_filename= re.sub(r'[-\s]+', '-', audio_filename).strip('-_')
     audio_filename = audio_filename.replace('.mp4', '')
 
-    ya.download(filename = audio_filename,mp3=True)
+    ya.download(filename = audio_filename) #,mp3=True)
 
   if not progressive:
     print("Merging video and audio file into output:"+filename.replace(".mp4","_mix.mp4"))
