@@ -33,7 +33,7 @@ def main():
   mp3_only = input("Audio Only [yes/no] (no): ").lower()
   progressive = True
 
-  yt = YouTube(url, on_progress_callback = on_progress)
+  yt = YouTube(url, on_progress_callback = on_progress, use_po_token=True)
 
   if mp3_only != "yes":
     try:
