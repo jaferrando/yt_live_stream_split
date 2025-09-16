@@ -15,11 +15,12 @@ if ($name -like "*_mix") {
   $m4a_name = "{0}.m4a" -f $name
   $chapters_name = "{0}.csv" -f $name
 }
-
+Write-Host $chapters_name
 $chapters = Import-Csv -Path $chapters_name | Foreach-Object {
   $start = $_.start
   $end = $_.end
   $song = ("{0}.mp4" -f $_.song)
+  Write-Host $song
   if (!(Test-Path $song -PathType Leaf)) {
     ffmpeg -v quiet -stats -y -i $file -avoid_negative_ts make_zero -fflags +genpts -ss $start -to $end -c:a aac $song
   }
